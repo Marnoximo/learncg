@@ -1,0 +1,12 @@
+﻿  main_glut_tut_01.cpp
+e:\vc projects\glut_tutorial\glut_tutorial_01\basicshader.h(65): warning C4101: 'infoLog': unreferenced local variable
+e:\vc projects\glut_tutorial\glut_tutorial_01\basicshader.h(64): warning C4101: 'success': unreferenced local variable
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(154): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(213): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(214): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(218): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(219): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(221): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(222): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  glut_tutorial_01.vcxproj -> E:\vc projects\glut_tutorial\Debug\glut_tutorial_01.exe
+  glut_tutorial_01.vcxproj -> E:\vc projects\glut_tutorial\Debug\glut_tutorial_01.pdb (Partial PDB)

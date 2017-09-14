@@ -1,0 +1,466 @@
+#include <GL/glew.h>
+#include <GL/glfw3.h>
+#include <iostream>
+#include <math.h>
+#include "basicShader.h"
+#include "stb_image.h"
+#include <gl/glm/glm.hpp>
+#include <GL/glm/gtc/matrix_transform.hpp>
+#include <GL/glm/gtc/type_ptr.hpp>
+#include "camera_demo.h"
+using namespace std;
+
+//=========FUNTIONS==========//
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void processInput(GLFWwindow *window);
+float adjustUpDown(GLFWwindow *window, float value);
+float adjustLeftRight(GLFWwindow *window, float value);
+void adjustColor(GLFWwindow *window, const Shader &shader);
+void translate(GLFWwindow *window, const Shader &shader);
+void rectangle();
+void loadTexure();
+void moveCam(GLFWwindow *window);
+void mouse_callback(GLFWwindow *window, double xpos, double ypos);
+void load_lightSource();
+
+//======GLOBAL VARIABLES=======//
+
+// Paths to Shader Files
+const char* vShaderPath = "shader.vert.txt";
+const char* fShaderPath = "shader.frag.txt";
+
+// Buffer Objects - Screen Size - Mouse - Others
+GLuint triVAO, triVBO, triEBO, texVAO, texVBO , texEBO, texID, texID_2, triVAO2, triVBO2, triEBO2, lightVAO;
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
+float offset = 0.01f, amnt = 0.01f / 30.0f, opa = 0.5f;
+float mouLastX = 400, mouLastY = 300;	// Last position of the mouse
+float sensitivity = 0.05f;				// Mouse sensitivity
+bool firstMouse = true;					// Bool variable for checking first mouse
+
+// Camera Settings
+glm::vec3 camPos = glm::vec3(0.0f, 0.0f, 3.0f);	
+glm::vec3 camFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 camUp = glm::vec3(0.0f, 1.0f, 0.0f);
+float pitch = 0, yaw = -90.f, roll = 0;
+camera_demo camera;						// CAMERA OBJECT
+
+// Delta Time
+float deltaTime = 0.0f;
+float lastFrameTime = 0.0f;
+
+//=========MAIN FUNCTION==========//
+
+int main(int argc, char** argv)
+{
+	//==========INITIALIZE OPENGL CONTEXT==============//
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+	if (window == NULL)
+	{
+		std::cout << "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+		return -1;
+	}
+	glfwMakeContextCurrent(window);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPosCallback(window, mouse_callback);
+	if (glewInit() == 0)
+		cout << "Failed to initialize glew!\n";
+
+	//==========PREPARING DATA================//
+	
+	glEnable(GL_DEPTH_TEST);	// Enable gl's depth-test feature 
+	loadTexure();
+	//rectangle();
+	Shader shaderProg(vShaderPath, fShaderPath);	//Load shaders
+	// Positions of 10 cubes!!!
+	glm::vec3 cubePositions[] = {
+		glm::vec3(0.0f,  0.0f,  0.0f),
+		glm::vec3(2.0f,  5.0f, -15.0f),
+		glm::vec3(-1.5f, -2.2f, -2.5f),
+		glm::vec3(-3.8f, -2.0f, -12.3f),
+		glm::vec3(2.4f, -0.4f, -3.5f),
+		glm::vec3(-1.7f,  3.0f, -7.5f),
+		glm::vec3(1.3f, -2.0f, -2.5f),
+		glm::vec3(1.5f,  2.0f, -2.5f),
+		glm::vec3(1.5f,  0.2f, -1.5f),
+		glm::vec3(-1.3f,  1.0f, -1.5f)
+	};
+
+	
+	//============MAIN LOOP============//
+
+	while (!glfwWindowShouldClose(window))
+	{
+		processInput(window);
+		double x, y;
+		glfwGetCursorPos(window, &x, &y);
+		//cout << x << " " << y << endl;
+
+		// Set background color and clear color/depth buffer bit
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		// Enable using shader program
+		shaderProg.use();
+		
+		// Calculating delta time
+		float currentFrameTime = glfwGetTime();
+		deltaTime = currentFrameTime - lastFrameTime;
+		lastFrameTime = currentFrameTime;
+
+		// Declare local variables
+		glm::mat4 model, view, projection;
+		static GLfloat FOV = 45.0f, aspectRatio = (float)SCR_WIDTH / (float)SCR_HEIGHT;
+
+		// Input handling
+		adjustColor(window, shaderProg);
+		aspectRatio = adjustLeftRight(window, aspectRatio);
+		moveCam(window);
+
+		// Texture Settings
+		glUniform1i(glGetUniformLocation(shaderProg.ID, "ourTexture"), 0);
+		glUniform1i(glGetUniformLocation(shaderProg.ID, "ourTexture2"), 1);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texID);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texID_2);
+		/*translate(window, shaderProg);*/
+
+		// Calculating projection/view/model matrices - set value to corresponding uniforms in shader stages
+		projection = glm::perspective(FOV, aspectRatio, 0.1f, 100.0f);
+		view = glm::lookAt(camPos, camPos + camFront, camUp);
+		glUniformMatrix4fv(glGetUniformLocation(shaderProg.ID, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+		//glUniformMatrix4fv(glGetUniformLocation(shaderProg.ID, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(glGetUniformLocation(shaderProg.ID, "view"), 1, GL_FALSE, glm::value_ptr(camera.view_mat()));	// CAMERA OBJECT
+
+		// Bind vertex array
+		glBindVertexArray(texVAO);
+
+		// Drawing commands
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		/*for (unsigned int i = 0; i < 10; i++)
+		{
+			model = glm::mat4();
+			model = glm::translate(model, cubePositions[i]);
+			float angle = 20.0f * i;
+			model = glm::rotate(model, (float)glfwGetTime() * glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+			glUniformMatrix4fv(glGetUniformLocation(shaderProg.ID, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}*/
+
+		/*glm::mat4 transform;
+		transform = glm::mat4(); // reset it to an identity matrix
+		transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
+		float scaleAmount = sin(glfwGetTime());*/
+
+		//if (scaleAmount < 0)
+		//	scaleAmount = -scaleAmount;
+		/*transform = glm::scale(transform, glm::vec3(scaleAmount, scaleAmount, scaleAmount));
+		glUniformMatrix4fv(glGetUniformLocation(shaderProg.ID, "trans"), 1, GL_FALSE, &transform[0][0]);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);*/
+		
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+	glfwTerminate();
+
+	return 0;
+}
+
+//========================================================================================================//
+
+//=========FUNCTION DEFINITIONS===========//
+
+void processInput(GLFWwindow *window)
+{
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, true);
+}
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+}
+
+void mouse_callback(GLFWwindow *window, double xpos, double ypos)
+{
+	
+
+	if (firstMouse)		// Eliminating sudden jump when initialize window
+	{
+		mouLastX = xpos;
+		mouLastY = ypos;
+		firstMouse = false;
+	}
+	cout << "Mouse position: " << xpos << " " << ypos << endl
+		<< "Last pos: " << mouLastX << " " << mouLastY << endl;
+
+	float x_offset = xpos - mouLastX, y_offset = mouLastY - ypos;
+	mouLastX = xpos;
+	mouLastY = ypos;
+	x_offset *= sensitivity;
+	y_offset *= sensitivity;
+
+	
+
+	//cout << x_offset << "-" << y_offset << endl;
+
+	yaw += x_offset;
+
+	pitch += y_offset;
+	// Constraintment for pitch value
+	if (pitch > 89.0f)	
+		pitch = 89.0f;
+	if (pitch < -89.0f)
+		pitch = -89.0f;
+
+	glm::vec3 front;	// Set the value of camera-front vector 
+	front.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
+	front.y = sin(glm::radians(pitch));
+	front.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
+	camFront = glm::normalize(front);
+
+	camera.look(y_offset, x_offset, 0.0f);		// CAMERA OBJECT
+}
+
+void moveCam(GLFWwindow *window)
+{
+	float camSpeed = 5.0f * deltaTime; // Moving speed of the camera
+
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		//camPos += camSpeed * camFront;
+		camera.move(CAM_MOV_FORWARD, camSpeed);
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		//camPos -= camSpeed * camFront;
+		camera.move(CAM_MOV_BACKWARD, camSpeed);
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		//camPos += camSpeed * glm::normalize(glm::cross(camUp, camFront));
+		camera.move(CAM_MOV_LEFT, camSpeed);
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		//camPos -= camSpeed * glm::normalize(glm::cross(camUp, camFront));
+		camera.move(CAM_MOV_RIGHT, camSpeed);
+}
+void adjustColor(GLFWwindow *window, const Shader &shader)
+{
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+		if (opa + amnt <= 1.0f)
+			opa += amnt;
+	}
+	else if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		if (opa - amnt >= 0.0f)
+			opa -= amnt;
+	}
+	glUniform1f(glGetUniformLocation(shader.ID, "opaque"), opa);
+}
+
+float adjustUpDown(GLFWwindow *window, float value)
+{
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+			value += amnt;
+	}
+	else if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+			value -= amnt;
+	}
+	return value;
+}
+
+float adjustLeftRight(GLFWwindow *window, float value)
+{
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+	{
+		value += amnt;
+	}
+	else if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+	{
+		value -= amnt;
+	}
+	return value;
+}
+void loadTexure()
+{
+	glGenVertexArrays(1, &texVAO);
+	glBindVertexArray(texVAO);
+	glGenBuffers(1, &texVBO);
+	glGenBuffers(1, &texEBO);
+
+	//===========VERTEX DATA===========//
+	float vertices[] = {
+		// positions          // colors           // texture coords
+		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+		0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+		0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+		0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+		0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+		0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+		0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+		0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+	};
+	unsigned int indices[] = {  // note that we start from 0!
+		0, 1, 3,   // first triangle
+		1, 2, 3    // second triangle
+	};
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, texEBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, texVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)(sizeof(float) * 3));
+	glEnableVertexAttribArray(1);
+
+	//==========TEXTURE 2=============//
+	glGenTextures(1, &texID_2);
+	glBindTexture(GL_TEXTURE_2D, texID_2);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	int width, height, nrChannels;
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char *data = stbi_load("Resources/smile.jpg", &width, &height, &nrChannels, 0);
+	
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		cout << "Failed to load image!" << endl;
+	}
+	stbi_image_free(data);
+
+	//=========TEXTURE 1==========//
+	glGenTextures(1, &texID);
+	glBindTexture(GL_TEXTURE_2D, texID);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	data = stbi_load("Resources/container.jpg", &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		cout << "Failed to load image!" << endl;
+	}
+	stbi_image_free(data);
+
+	
+}
+
+void rectangle()
+{
+
+	const GLfloat vertices[12] = {
+		-0.5f, -0.5f, 0.0f,
+		0.5f, -0.5f, 0.0f,
+		0.5f,  0.5f, 0.0f,
+		-0.5f, 0.5f, 0.0f
+	};
+	const GLfloat colors[12] = {
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+		0.5f, 0.5f, 0.0f
+	};
+	const GLint indices[6] = {
+		0,1,3,
+		1,2,3
+	};
+	const GLfloat texCoord[8] = {
+		1.5f, 1.5f,
+		-1.5f, 0.5f,
+		-0.5f, -0.5f,
+		-0.5f, 1.5f
+	};
+	glGenVertexArrays(1, &triVAO2);
+	glBindVertexArray(triVAO2);
+	glGenBuffers(1, &triVBO2);
+	glBindBuffer(GL_ARRAY_BUFFER, triVBO2);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(colors), NULL, GL_STATIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+	glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(colors), colors);
+	glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices) + sizeof(colors), sizeof(texCoord), texCoord);
+	glGenBuffers(1, &triEBO2);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)sizeof(vertices));
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, (void*)(sizeof(vertices) + sizeof(colors)));
+	glEnableVertexAttribArray(2);
+}
+
+void translate(GLFWwindow *window, const Shader &shader)
+{
+	glm::mat4 trans;
+	trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+	trans = glm::translate(trans, glm::vec3(0.5f, 0.5f, 0.0f));
+	
+	trans = glm::scale(trans, glm::vec3(0.5f, 0.5f, 0.5f));
+	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "trans"), 1, GL_FALSE, glm::value_ptr(trans));
+
+}
+
+void load_lightSource() {
+	glGenVertexArrays(1, &lightVAO);
+	glBindVertexArray(lightVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, texVBO);
+	glVertexAttribPointer(0, 3, GL_FLOAT, FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexArrayAttrib(0);
+}
