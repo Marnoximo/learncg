@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gb_sinhVien = new System.Windows.Forms.GroupBox();
+            this.btn_show = new System.Windows.Forms.Button();
             this.l_khoa = new System.Windows.Forms.Label();
             this.t_khoa = new System.Windows.Forms.ComboBox();
             this.gb_nnlt = new System.Windows.Forms.GroupBox();
@@ -44,19 +45,18 @@
             this.l_hoTen = new System.Windows.Forms.Label();
             this.l_mssv = new System.Windows.Forms.Label();
             this.t_mssv = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NNLT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_show = new System.Windows.Forms.Button();
+            this.btn_add = new System.Windows.Forms.Button();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_search = new System.Windows.Forms.Button();
             this.t_searchBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.NNLT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.gb_sinhVien.SuspendLayout();
             this.gb_nnlt.SuspendLayout();
             this.gb_gioiTinh.SuspendLayout();
@@ -65,7 +65,7 @@
             // 
             // gb_sinhVien
             // 
-            this.gb_sinhVien.Controls.Add(this.button1);
+            this.gb_sinhVien.Controls.Add(this.btn_show);
             this.gb_sinhVien.Controls.Add(this.l_khoa);
             this.gb_sinhVien.Controls.Add(this.t_khoa);
             this.gb_sinhVien.Controls.Add(this.gb_nnlt);
@@ -83,6 +83,16 @@
             this.gb_sinhVien.TabStop = false;
             this.gb_sinhVien.Text = "Sinh vien";
             // 
+            // btn_show
+            // 
+            this.btn_show.Location = new System.Drawing.Point(590, 170);
+            this.btn_show.Name = "btn_show";
+            this.btn_show.Size = new System.Drawing.Size(75, 23);
+            this.btn_show.TabIndex = 12;
+            this.btn_show.Text = "Show";
+            this.btn_show.UseVisualStyleBackColor = true;
+            this.btn_show.Click += new System.EventHandler(this.btn_show_Click);
+            // 
             // l_khoa
             // 
             this.l_khoa.AutoSize = true;
@@ -96,13 +106,14 @@
             // 
             this.t_khoa.FormattingEnabled = true;
             this.t_khoa.Items.AddRange(new object[] {
-            "13T1",
-            "13T2",
-            "13T3"});
+            "IT",
+            "ES",
+            "ECE"});
             this.t_khoa.Location = new System.Drawing.Point(76, 137);
             this.t_khoa.Name = "t_khoa";
             this.t_khoa.Size = new System.Drawing.Size(121, 24);
             this.t_khoa.TabIndex = 10;
+            this.t_khoa.SelectedIndexChanged += new System.EventHandler(this.cb_khoa_index_changed);
             // 
             // gb_nnlt
             // 
@@ -226,62 +237,17 @@
             this.t_mssv.Name = "t_mssv";
             this.t_mssv.Size = new System.Drawing.Size(100, 22);
             this.t_mssv.TabIndex = 0;
+            this.t_mssv.TextChanged += new System.EventHandler(this.btn_show_Click);
             // 
-            // dataGridView1
+            // btn_add
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT,
-            this.Name,
-            this.Lop,
-            this.Birthday,
-            this.Gender,
-            this.NNLT});
-            this.dataGridView1.Location = new System.Drawing.Point(43, 285);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(641, 150);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // STT
-            // 
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            // 
-            // Lop
-            // 
-            this.Lop.HeaderText = "Lop";
-            this.Lop.Name = "Lop";
-            // 
-            // Birthday
-            // 
-            this.Birthday.HeaderText = "Birthday";
-            this.Birthday.Name = "Birthday";
-            // 
-            // Gender
-            // 
-            this.Gender.HeaderText = "Gender";
-            this.Gender.Name = "Gender";
-            // 
-            // NNLT
-            // 
-            this.NNLT.HeaderText = "NNLT";
-            this.NNLT.Name = "NNLT";
-            // 
-            // btn_show
-            // 
-            this.btn_show.Location = new System.Drawing.Point(77, 531);
-            this.btn_show.Name = "btn_show";
-            this.btn_show.Size = new System.Drawing.Size(75, 23);
-            this.btn_show.TabIndex = 2;
-            this.btn_show.Text = "Show";
-            this.btn_show.UseVisualStyleBackColor = true;
-            this.btn_show.Click += new System.EventHandler(this.btn_show_Click);
+            this.btn_add.Location = new System.Drawing.Point(77, 531);
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(75, 23);
+            this.btn_add.TabIndex = 2;
+            this.btn_add.Text = "Add";
+            this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_show_Click);
             // 
             // btn_update
             // 
@@ -317,15 +283,51 @@
             this.t_searchBox.Size = new System.Drawing.Size(100, 22);
             this.t_searchBox.TabIndex = 7;
             // 
-            // button1
+            // NNLT
             // 
-            this.button1.Location = new System.Drawing.Point(590, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btn_show_Click);
+            this.NNLT.HeaderText = "NNLT";
+            this.NNLT.Name = "NNLT";
+            // 
+            // Gender
+            // 
+            this.Gender.HeaderText = "Gender";
+            this.Gender.Name = "Gender";
+            // 
+            // Birthday
+            // 
+            this.Birthday.HeaderText = "Birthday";
+            this.Birthday.Name = "Birthday";
+            // 
+            // Lop
+            // 
+            this.Lop.HeaderText = "Lop";
+            this.Lop.Name = "Lop";
+            // 
+            // Name
+            // 
+            this.Name.HeaderText = "Form1";
+            this.Name.Name = "Name";
+            // 
+            // STT
+            // 
+            this.STT.HeaderText = "STT";
+            this.STT.Name = "STT";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.STT,
+            this.Name,
+            this.Lop,
+            this.Birthday,
+            this.Gender,
+            this.NNLT});
+            this.dataGridView1.Location = new System.Drawing.Point(43, 285);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(641, 150);
+            this.dataGridView1.TabIndex = 1;
             // 
             // Form1
             // 
@@ -334,10 +336,10 @@
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_update);
-            this.Controls.Add(this.btn_show);
+            this.Controls.Add(this.btn_add);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.gb_sinhVien);
-            this.Name.HeaderText = "Form1";
+            this.Name = "Form1";
             this.gb_sinhVien.ResumeLayout(false);
             this.gb_sinhVien.PerformLayout();
             this.gb_nnlt.ResumeLayout(false);
@@ -366,21 +368,21 @@
         private System.Windows.Forms.Label l_hoTen;
         private System.Windows.Forms.Label l_mssv;
         private System.Windows.Forms.TextBox t_mssv;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lop;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Birthday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NNLT;
-        private System.Windows.Forms.Button btn_show;
+        private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.TextBox t_searchBox;
         private System.Windows.Forms.ComboBox t_khoa;
         private System.Windows.Forms.Label l_khoa;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_show;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NNLT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Birthday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lop;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

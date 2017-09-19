@@ -20,6 +20,13 @@ namespace Buoi5_windowFormDemo
         {
             MessageBox.Show(t_mssv.Text);
         }
+
+        private void cb_khoa_index_changed(object sender, EventArgs e)
+        {
+            MessageBox.Show(t_khoa.Items[t_khoa.SelectedIndex].ToString());
+        }
+
+        private void
         
     }
 }

@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace Buoi5_windowFormDemo
 {
     class Sinhvien
     {
-        private int id;
-        private int name;
-        private int faculty;
+        int id;
+        String name;
+        String faculty;
+        String gender;
+        DateTime birthday;
+        String pro_lan;
     }
 }
