@@ -1,0 +1,6 @@
+E:\vc projects\CSharpDemo\Demo01\bin\Debug\Demo01.exe
+E:\vc projects\CSharpDemo\Demo01\bin\Debug\Demo01.pdb
+E:\vc projects\CSharpDemo\Demo01\obj\Debug\Demo01.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\Demo01\obj\Debug\Demo01.exe
+E:\vc projects\CSharpDemo\Demo01\obj\Debug\Demo01.pdb
+E:\vc projects\CSharpDemo\Demo01\obj\Debug\Demo01.csproj.CoreCompileInputs.cache

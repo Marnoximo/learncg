@@ -1,0 +1,9 @@
+E:\vc projects\CSharpDemo\Buoi6_winform\bin\Debug\Buoi6_winform.exe
+E:\vc projects\CSharpDemo\Buoi6_winform\bin\Debug\Buoi6_winform.pdb
+E:\vc projects\CSharpDemo\Buoi6_winform\obj\Debug\Buoi6_winform.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\Buoi6_winform\obj\Debug\Buoi6_winform.Form1.resources
+E:\vc projects\CSharpDemo\Buoi6_winform\obj\Debug\Buoi6_winform.Properties.Resources.resources
+E:\vc projects\CSharpDemo\Buoi6_winform\obj\Debug\Buoi6_winform.csproj.GenerateResource.Cache
+E:\vc projects\CSharpDemo\Buoi6_winform\obj\Debug\Buoi6_winform.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\Buoi6_winform\obj\Debug\Buoi6_winform.exe
+E:\vc projects\CSharpDemo\Buoi6_winform\obj\Debug\Buoi6_winform.pdb

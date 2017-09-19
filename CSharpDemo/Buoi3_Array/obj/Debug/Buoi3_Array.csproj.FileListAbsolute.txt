@@ -1,0 +1,5 @@
+E:\vc projects\CSharpDemo\Buoi3_Array\bin\Debug\Buoi3_Array.exe
+E:\vc projects\CSharpDemo\Buoi3_Array\bin\Debug\Buoi3_Array.pdb
+E:\vc projects\CSharpDemo\Buoi3_Array\obj\Debug\Buoi3_Array.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\Buoi3_Array\obj\Debug\Buoi3_Array.exe
+E:\vc projects\CSharpDemo\Buoi3_Array\obj\Debug\Buoi3_Array.pdb

@@ -1,0 +1,9 @@
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\bin\Debug\Buoi5_windowFormDemo.exe
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\bin\Debug\Buoi5_windowFormDemo.pdb
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\obj\Debug\Buoi5_windowFormDemo.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\obj\Debug\Buoi5_windowFormDemo.Form1.resources
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\obj\Debug\Buoi5_windowFormDemo.Properties.Resources.resources
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\obj\Debug\Buoi5_windowFormDemo.csproj.GenerateResource.Cache
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\obj\Debug\Buoi5_windowFormDemo.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\obj\Debug\Buoi5_windowFormDemo.exe
+E:\vc projects\CSharpDemo\Buoi5_windowFormDemo\obj\Debug\Buoi5_windowFormDemo.pdb

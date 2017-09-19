@@ -1,0 +1,5 @@
+E:\vc projects\CSharpDemo\Buoi3_OOPinCSharp\bin\Debug\Buoi3_OOPinCSharp.exe
+E:\vc projects\CSharpDemo\Buoi3_OOPinCSharp\bin\Debug\Buoi3_OOPinCSharp.pdb
+E:\vc projects\CSharpDemo\Buoi3_OOPinCSharp\obj\Debug\Buoi3_OOPinCSharp.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\Buoi3_OOPinCSharp\obj\Debug\Buoi3_OOPinCSharp.exe
+E:\vc projects\CSharpDemo\Buoi3_OOPinCSharp\obj\Debug\Buoi3_OOPinCSharp.pdb

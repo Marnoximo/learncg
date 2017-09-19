@@ -1,0 +1,6 @@
+E:\vc projects\CSharpDemo\Buoi3\bin\Debug\Buoi3.exe
+E:\vc projects\CSharpDemo\Buoi3\bin\Debug\Buoi3.pdb
+E:\vc projects\CSharpDemo\Buoi3\obj\Debug\Buoi3.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\Buoi3\obj\Debug\Buoi3.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\Buoi3\obj\Debug\Buoi3.exe
+E:\vc projects\CSharpDemo\Buoi3\obj\Debug\Buoi3.pdb
