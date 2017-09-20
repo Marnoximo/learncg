@@ -9,7 +9,11 @@
 #include <GL/glm/gtc/matrix_transform.hpp>
 #include <GL/glm/gtc/type_ptr.hpp>
 #include "camera_demo.h"
+#include <math.h>
 using namespace std;
+
+//=========STRUCT============//
+
 
 //=========FUNTIONS==========//
 
@@ -173,6 +177,27 @@ int main(int argc, char** argv)
 		lightingShader.setVec3("viewPos", cam.Position);
 		lightingShader.setMat4("model", model);
 
+		float value = sin(glfwGetTime())* 256.0f;
+		if (value < 0)
+			value = !value;
+		float shininess = value;
+		cout << shininess << endl;
+		
+		lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+		lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+		lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+		lightingShader.setFloat("material.shininess", shininess);
+		
+		glm::vec3 lightColor;
+		lightColor.x = sin(glfwGetTime() * 2.0f);
+		lightColor.y = sin(glfwGetTime() * 0.7f);
+		lightColor.z = sin(glfwGetTime() * 1.3f);
+		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
+		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+		lightingShader.setVec3("light.ambient", ambientColor);
+		lightingShader.setVec3("light.diffuse", diffuseColor);
+		lightingShader.setVec3("light.position", lightPos);
+		lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
 		// render the cube
 		glBindVertexArray(cubeVAO);
