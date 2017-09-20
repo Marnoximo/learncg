@@ -170,6 +170,7 @@ int main(int argc, char** argv)
 		// world transformation
 		glm::mat4 model;
 		lightingShader.setVec3("lightPos", lightPos);
+		lightingShader.setVec3("viewPos", cam.Position);
 		lightingShader.setMat4("model", model);
 
 

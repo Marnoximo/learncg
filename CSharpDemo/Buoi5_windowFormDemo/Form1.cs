@@ -26,7 +26,38 @@ namespace Buoi5_windowFormDemo
             MessageBox.Show(t_khoa.Items[t_khoa.SelectedIndex].ToString());
         }
 
-        private void
-        
+        private void lv_sinhvien_index_changed(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection l;
+            l = listView1.SelectedItems;
+            if (l.Count >0)
+            {
+                MessageBox.Show(l[0].SubItems[1].ToString()); 
+            }
+        }
+
+        private void rb_nam_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_nam.Checked)
+                rb_nu.Checked = false;
+
+        }
+
+        private void rb_nu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_nu.Checked)
+                rb_nam.Checked = false;
+        }
+
+        private void rb_gender_checkedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            //Sinhvien sv = new Sinhvien(1, "Tien", "cntt");
+            //listView1.Items.Add(new ListViewItem(new String[] = { sv}));
+        }
     }
 }

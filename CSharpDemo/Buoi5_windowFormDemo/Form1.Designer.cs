@@ -2,6 +2,7 @@
 {
     partial class Form1
     {
+        public bool genderChecked;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -28,6 +29,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "Item1",
+            "item1Name",
+            "item1Khoa",
+            "item1Birthday"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Item2");
             this.gb_sinhVien = new System.Windows.Forms.GroupBox();
             this.btn_show = new System.Windows.Forms.Button();
             this.l_khoa = new System.Windows.Forms.Label();
@@ -50,17 +57,14 @@
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_search = new System.Windows.Forms.Button();
             this.t_searchBox = new System.Windows.Forms.TextBox();
-            this.NNLT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.MSSV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Khoa = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Birthday = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gb_sinhVien.SuspendLayout();
             this.gb_nnlt.SuspendLayout();
             this.gb_gioiTinh.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // gb_sinhVien
@@ -178,6 +182,7 @@
             this.rb_nu.TabStop = true;
             this.rb_nu.Text = "Nu";
             this.rb_nu.UseVisualStyleBackColor = true;
+            this.rb_nu.CheckedChanged += new System.EventHandler(this.rb_nu_CheckedChanged);
             // 
             // rb_nam
             // 
@@ -189,6 +194,7 @@
             this.rb_nam.TabStop = true;
             this.rb_nam.Text = "Nam";
             this.rb_nam.UseVisualStyleBackColor = true;
+            this.rb_nam.CheckedChanged += new System.EventHandler(this.rb_nam_CheckedChanged);
             // 
             // l_ngaySinh
             // 
@@ -247,7 +253,7 @@
             this.btn_add.TabIndex = 2;
             this.btn_add.Text = "Add";
             this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_show_Click);
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_update
             // 
@@ -283,61 +289,53 @@
             this.t_searchBox.Size = new System.Drawing.Size(100, 22);
             this.t_searchBox.TabIndex = 7;
             // 
-            // NNLT
+            // listView1
             // 
-            this.NNLT.HeaderText = "NNLT";
-            this.NNLT.Name = "NNLT";
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.MSSV,
+            this.Name,
+            this.Khoa,
+            this.Birthday});
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
+            this.listView1.Location = new System.Drawing.Point(119, 315);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(561, 171);
+            this.listView1.TabIndex = 8;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.lv_sinhvien_index_changed);
             // 
-            // Gender
+            // MSSV
             // 
-            this.Gender.HeaderText = "Gender";
-            this.Gender.Name = "Gender";
-            // 
-            // Birthday
-            // 
-            this.Birthday.HeaderText = "Birthday";
-            this.Birthday.Name = "Birthday";
-            // 
-            // Lop
-            // 
-            this.Lop.HeaderText = "Lop";
-            this.Lop.Name = "Lop";
+            this.MSSV.Text = "MSSV";
+            this.MSSV.Width = 119;
             // 
             // Name
             // 
-            this.Name.HeaderText = "Form1";
-            this.Name.Name = "Name";
+            this.Name.Text = "Name";
+            this.Name.Width = 109;
             // 
-            // STT
+            // Khoa
             // 
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
+            this.Khoa.Text = "Khoa";
+            this.Khoa.Width = 184;
             // 
-            // dataGridView1
+            // Birthday
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT,
-            this.Name,
-            this.Lop,
-            this.Birthday,
-            this.Gender,
-            this.NNLT});
-            this.dataGridView1.Location = new System.Drawing.Point(43, 285);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(641, 150);
-            this.dataGridView1.TabIndex = 1;
+            this.Birthday.Text = "Birthday";
+            this.Birthday.Width = 114;
             // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(915, 618);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.t_searchBox);
             this.Controls.Add(this.btn_search);
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.btn_add);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.gb_sinhVien);
             this.Name = "Form1";
             this.gb_sinhVien.ResumeLayout(false);
@@ -346,7 +344,6 @@
             this.gb_nnlt.PerformLayout();
             this.gb_gioiTinh.ResumeLayout(false);
             this.gb_gioiTinh.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,13 +373,11 @@
         private System.Windows.Forms.ComboBox t_khoa;
         private System.Windows.Forms.Label l_khoa;
         private System.Windows.Forms.Button btn_show;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NNLT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Birthday;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Lop;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader MSSV;
+        private System.Windows.Forms.ColumnHeader Name;
+        private System.Windows.Forms.ColumnHeader Khoa;
+        private System.Windows.Forms.ColumnHeader Birthday;
     }
 }
 

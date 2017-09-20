@@ -14,5 +14,12 @@ namespace Buoi5_windowFormDemo
         String gender;
         DateTime birthday;
         String pro_lan;
+
+        public Sinhvien(int id, string name, string faculty)
+        {
+            this.id = id;
+            this.name = name;
+            this.faculty = faculty;
+        }
     }
 }
