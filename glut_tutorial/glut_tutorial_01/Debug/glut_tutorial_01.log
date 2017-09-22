@@ -1,18 +1,19 @@
 ﻿  main_glut_tut_01.cpp
 e:\vc projects\glut_tutorial\glut_tutorial_01\basicshader.h(65): warning C4101: 'infoLog': unreferenced local variable
 e:\vc projects\glut_tutorial\glut_tutorial_01\basicshader.h(64): warning C4101: 'success': unreferenced local variable
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(164): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(180): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(192): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(193): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(194): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(246): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(247): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(251): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(252): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(254): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(255): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  LINK : E:\vc projects\glut_tutorial\Debug\glut_tutorial_01.exe not found or not built by the last incremental link; performing full link
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(176): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(187): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(188): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(195): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(207): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(208): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(209): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(273): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(274): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(278): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(279): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(281): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\vc projects\glut_tutorial\glut_tutorial_01\main_glut_tut_01.cpp(282): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   glut_tutorial_01.vcxproj -> E:\vc projects\glut_tutorial\Debug\glut_tutorial_01.exe
   glut_tutorial_01.vcxproj -> E:\vc projects\glut_tutorial\Debug\glut_tutorial_01.pdb (Partial PDB)
