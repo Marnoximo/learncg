@@ -1,0 +1,4 @@
+﻿  Expression.cpp
+c:\users\marco\documents\visual studio 2017\projects\parsingexpressions\parsingexpressions\expression.cpp(19): warning C4018: '<': signed/unsigned mismatch
+  ParsingExpressions.vcxproj -> C:\Users\Marco\Documents\Visual Studio 2017\Projects\ParsingExpressions\Debug\ParsingExpressions.exe
+  ParsingExpressions.vcxproj -> C:\Users\Marco\Documents\Visual Studio 2017\Projects\ParsingExpressions\Debug\ParsingExpressions.pdb (Partial PDB)
