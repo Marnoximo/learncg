@@ -59,5 +59,10 @@ namespace Buoi5_windowFormDemo
             //Sinhvien sv = new Sinhvien(1, "Tien", "cntt");
             //listView1.Items.Add(new ListViewItem(new String[] = { sv}));
         }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

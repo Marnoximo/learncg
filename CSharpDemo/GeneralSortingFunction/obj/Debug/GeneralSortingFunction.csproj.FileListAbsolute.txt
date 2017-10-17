@@ -1,0 +1,6 @@
+E:\vc projects\CSharpDemo\GeneralSortingFunction\bin\Debug\GeneralSortingFunction.exe
+E:\vc projects\CSharpDemo\GeneralSortingFunction\bin\Debug\GeneralSortingFunction.pdb
+E:\vc projects\CSharpDemo\GeneralSortingFunction\obj\Debug\GeneralSortingFunction.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\GeneralSortingFunction\obj\Debug\GeneralSortingFunction.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\GeneralSortingFunction\obj\Debug\GeneralSortingFunction.exe
+E:\vc projects\CSharpDemo\GeneralSortingFunction\obj\Debug\GeneralSortingFunction.pdb

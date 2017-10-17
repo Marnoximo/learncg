@@ -1,0 +1,6 @@
+E:\vc projects\CSharpDemo\EventConsoleApp\bin\Debug\EventConsoleApp.exe
+E:\vc projects\CSharpDemo\EventConsoleApp\bin\Debug\EventConsoleApp.pdb
+E:\vc projects\CSharpDemo\EventConsoleApp\obj\Debug\EventConsoleApp.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\EventConsoleApp\obj\Debug\EventConsoleApp.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\EventConsoleApp\obj\Debug\EventConsoleApp.exe
+E:\vc projects\CSharpDemo\EventConsoleApp\obj\Debug\EventConsoleApp.pdb

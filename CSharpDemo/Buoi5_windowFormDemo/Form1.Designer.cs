@@ -272,6 +272,7 @@
             this.btn_delete.TabIndex = 4;
             this.btn_delete.Text = "Delete";
             this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_search
             // 
@@ -337,7 +338,7 @@
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.gb_sinhVien);
-            this.Name = "Form1";
+            //this.Name = "Form1";
             this.gb_sinhVien.ResumeLayout(false);
             this.gb_sinhVien.PerformLayout();
             this.gb_nnlt.ResumeLayout(false);

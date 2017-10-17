@@ -1,0 +1,6 @@
+E:\vc projects\CSharpDemo\buoi7_delegate_new\bin\Debug\buoi7_delegate_new.exe
+E:\vc projects\CSharpDemo\buoi7_delegate_new\bin\Debug\buoi7_delegate_new.pdb
+E:\vc projects\CSharpDemo\buoi7_delegate_new\obj\Debug\buoi7_delegate_new.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\buoi7_delegate_new\obj\Debug\buoi7_delegate_new.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\buoi7_delegate_new\obj\Debug\buoi7_delegate_new.exe
+E:\vc projects\CSharpDemo\buoi7_delegate_new\obj\Debug\buoi7_delegate_new.pdb

@@ -1,0 +1,9 @@
+E:\vc projects\CSharpDemo\SqlJoin\bin\Debug\SqlJoin.exe
+E:\vc projects\CSharpDemo\SqlJoin\bin\Debug\SqlJoin.pdb
+E:\vc projects\CSharpDemo\SqlJoin\obj\Debug\SqlJoin.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\SqlJoin\obj\Debug\SqlJoin.Form1.resources
+E:\vc projects\CSharpDemo\SqlJoin\obj\Debug\SqlJoin.Properties.Resources.resources
+E:\vc projects\CSharpDemo\SqlJoin\obj\Debug\SqlJoin.csproj.GenerateResource.Cache
+E:\vc projects\CSharpDemo\SqlJoin\obj\Debug\SqlJoin.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\SqlJoin\obj\Debug\SqlJoin.exe
+E:\vc projects\CSharpDemo\SqlJoin\obj\Debug\SqlJoin.pdb

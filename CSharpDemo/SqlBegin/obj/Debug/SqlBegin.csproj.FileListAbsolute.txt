@@ -1,0 +1,9 @@
+E:\vc projects\CSharpDemo\SqlBegin\bin\Debug\SqlBegin.exe
+E:\vc projects\CSharpDemo\SqlBegin\bin\Debug\SqlBegin.pdb
+E:\vc projects\CSharpDemo\SqlBegin\obj\Debug\SqlBegin.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\SqlBegin\obj\Debug\SqlBegin.Form1.resources
+E:\vc projects\CSharpDemo\SqlBegin\obj\Debug\SqlBegin.Properties.Resources.resources
+E:\vc projects\CSharpDemo\SqlBegin\obj\Debug\SqlBegin.csproj.GenerateResource.Cache
+E:\vc projects\CSharpDemo\SqlBegin\obj\Debug\SqlBegin.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\SqlBegin\obj\Debug\SqlBegin.exe
+E:\vc projects\CSharpDemo\SqlBegin\obj\Debug\SqlBegin.pdb

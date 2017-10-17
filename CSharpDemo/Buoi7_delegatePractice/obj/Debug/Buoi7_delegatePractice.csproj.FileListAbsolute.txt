@@ -1,0 +1,10 @@
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\bin\Debug\Buoi7_delegatePractice.exe
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\bin\Debug\Buoi7_delegatePractice.pdb
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.Form1.resources
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.Form2.resources
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.Properties.Resources.resources
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.csproj.GenerateResource.Cache
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.exe
+E:\vc projects\CSharpDemo\Buoi7_delegatePractice\obj\Debug\Buoi7_delegatePractice.pdb
