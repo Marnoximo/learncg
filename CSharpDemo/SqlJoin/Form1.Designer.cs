@@ -39,11 +39,6 @@ namespace SqlJoin
             this.label_birthday = new System.Windows.Forms.Label();
             this.dtp_birthday = new System.Windows.Forms.DateTimePicker();
             this.lv_list = new System.Windows.Forms.ListView();
-            this.col_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_class = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_birthday = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.col_gender = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn_show = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
@@ -53,9 +48,13 @@ namespace SqlJoin
             this.gb_gender = new System.Windows.Forms.GroupBox();
             this.rb_female = new System.Windows.Forms.RadioButton();
             this.rb_male = new System.Windows.Forms.RadioButton();
-            this.col_facultyid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbb_facultyid = new System.Windows.Forms.ComboBox();
+            this.tb_facultyname = new System.Windows.Forms.TextBox();
+            this.label_facultyid = new System.Windows.Forms.Label();
+            this.label_facultyName = new System.Windows.Forms.Label();
+            this.dgv_student = new System.Windows.Forms.DataGridView();
             this.gb_gender.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_student)).BeginInit();
             this.SuspendLayout();
             // 
             // label_id
@@ -125,46 +124,14 @@ namespace SqlJoin
             // 
             // lv_list
             // 
-            this.lv_list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.col_id,
-            this.col_name,
-            this.col_class,
-            this.col_birthday,
-            this.col_gender,
-            this.col_facultyid});
             this.lv_list.FullRowSelect = true;
-            this.lv_list.Location = new System.Drawing.Point(40, 164);
+            this.lv_list.Location = new System.Drawing.Point(40, 187);
             this.lv_list.Name = "lv_list";
             this.lv_list.Size = new System.Drawing.Size(699, 191);
             this.lv_list.TabIndex = 10;
             this.lv_list.UseCompatibleStateImageBehavior = false;
             this.lv_list.View = System.Windows.Forms.View.Details;
             this.lv_list.SelectedIndexChanged += new System.EventHandler(this.lv_list_SelectedIndexChanged);
-            // 
-            // col_id
-            // 
-            this.col_id.Text = "ID";
-            this.col_id.Width = 82;
-            // 
-            // col_name
-            // 
-            this.col_name.Text = "Name";
-            this.col_name.Width = 185;
-            // 
-            // col_class
-            // 
-            this.col_class.Text = "Class";
-            this.col_class.Width = 77;
-            // 
-            // col_birthday
-            // 
-            this.col_birthday.Text = "Birthday";
-            this.col_birthday.Width = 174;
-            // 
-            // col_gender
-            // 
-            this.col_gender.Text = "Gender";
-            this.col_gender.Width = 58;
             // 
             // btn_show
             // 
@@ -258,25 +225,60 @@ namespace SqlJoin
             this.rb_male.UseVisualStyleBackColor = true;
             this.rb_male.CheckedChanged += new System.EventHandler(this.GenderClick);
             // 
-            // col_facultyid
+            // cbb_facultyid
             // 
-            this.col_facultyid.Text = "FacultyId";
-            this.col_facultyid.Width = 117;
+            this.cbb_facultyid.FormattingEnabled = true;
+            this.cbb_facultyid.Location = new System.Drawing.Point(90, 113);
+            this.cbb_facultyid.Name = "cbb_facultyid";
+            this.cbb_facultyid.Size = new System.Drawing.Size(121, 24);
+            this.cbb_facultyid.TabIndex = 14;
             // 
-            // comboBox1
+            // tb_facultyname
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(40, 113);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 14;
+            this.tb_facultyname.Location = new System.Drawing.Point(90, 144);
+            this.tb_facultyname.Name = "tb_facultyname";
+            this.tb_facultyname.Size = new System.Drawing.Size(187, 22);
+            this.tb_facultyname.TabIndex = 15;
+            // 
+            // label_facultyid
+            // 
+            this.label_facultyid.AutoSize = true;
+            this.label_facultyid.Location = new System.Drawing.Point(37, 116);
+            this.label_facultyid.Name = "label_facultyid";
+            this.label_facultyid.Size = new System.Drawing.Size(29, 17);
+            this.label_facultyid.TabIndex = 16;
+            this.label_facultyid.Text = "FID";
+            // 
+            // label_facultyName
+            // 
+            this.label_facultyName.AutoSize = true;
+            this.label_facultyName.Location = new System.Drawing.Point(37, 147);
+            this.label_facultyName.Name = "label_facultyName";
+            this.label_facultyName.Size = new System.Drawing.Size(51, 17);
+            this.label_facultyName.TabIndex = 17;
+            this.label_facultyName.Text = "Fname";
+            // 
+            // dgv_student
+            // 
+            this.dgv_student.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_student.Location = new System.Drawing.Point(848, 187);
+            this.dgv_student.Name = "dgv_student";
+            this.dgv_student.RowTemplate.Height = 24;
+            this.dgv_student.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_student.Size = new System.Drawing.Size(579, 191);
+            this.dgv_student.TabIndex = 18;
+            this.dgv_student.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_student_RowHeaderMouseClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(816, 501);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(1530, 501);
+            this.Controls.Add(this.dgv_student);
+            this.Controls.Add(this.label_facultyName);
+            this.Controls.Add(this.label_facultyid);
+            this.Controls.Add(this.tb_facultyname);
+            this.Controls.Add(this.cbb_facultyid);
             this.Controls.Add(this.gb_gender);
             this.Controls.Add(this.tb_search);
             this.Controls.Add(this.btn_search);
@@ -297,6 +299,7 @@ namespace SqlJoin
             this.Text = "Form1";
             this.gb_gender.ResumeLayout(false);
             this.gb_gender.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_student)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,16 +322,14 @@ namespace SqlJoin
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.TextBox tb_search;
-        private System.Windows.Forms.ColumnHeader col_id;
-        private System.Windows.Forms.ColumnHeader col_name;
-        private System.Windows.Forms.ColumnHeader col_class;
-        private System.Windows.Forms.ColumnHeader col_birthday;
-        private System.Windows.Forms.ColumnHeader col_gender;
         private System.Windows.Forms.GroupBox gb_gender;
         private System.Windows.Forms.RadioButton rb_female;
         private System.Windows.Forms.RadioButton rb_male;
-        private System.Windows.Forms.ColumnHeader col_facultyid;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbb_facultyid;
+        private System.Windows.Forms.TextBox tb_facultyname;
+        private System.Windows.Forms.Label label_facultyid;
+        private System.Windows.Forms.Label label_facultyName;
+        private System.Windows.Forms.DataGridView dgv_student;
     }
 }
 

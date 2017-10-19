@@ -6,25 +6,19 @@
 #include <string>
 #include "UDStack.h"
 #include <stack>
+#include "Expression.h"
 using namespace std;
 
 int main()
 {
-	const char *p = "xyz";
-	
-	UDStack *stack3 = new UDStack("cbcd");
-	UDStack *stack1 = new UDStack("abcd");
-	cout << stack1->size() << endl;
-	UDStack *stack2 = new UDStack(*stack1);
-	
-	while (stack2->isEmpty() == NULL)
-	{
-		cout << stack2->pop() << endl;
-	}
-	char ch[] = { 'a','a','b','d' };
-	string str = ch;
-	//cout << str;
-	cout << sizeof(p);
+	PostfixExpression *pe = new PostfixExpression("(10.1*3+7/8)*(5-1)");
+	cout << pe->to_string() << endl;
+	cout << "Result= " << pe->evaluate() << "$" << endl;
+
+	PrefixExpression *pre = new PrefixExpression("(10.1*3+7/8)*(5-1)");
+	cout << pre->to_string() << "$" << endl;
+	cout << "Result= " << pre->evaluate() << endl;
+
 	cin.get();
     return 0;
 }

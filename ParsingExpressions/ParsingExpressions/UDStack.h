@@ -26,8 +26,8 @@ public:
 	void push(char ch);					// Push a char into stack
 	void push(const char *p);			// Push all characters of a string literal into stack
 	char popChar();						// Pop one character
-	double popNumber();					// Pop one number
-	const char* popAll();				// Pop all
+	std::string popNumberString();					// Pop one number
+	//const char* popAll();				// Pop all
 
 	// Destructors
 	~UDStack();							// Default destructor

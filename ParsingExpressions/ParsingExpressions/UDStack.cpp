@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "UDStack.h"
 #include <string>
+#include <iostream>
 
 UDStack::UDStack()
 {
@@ -74,21 +75,6 @@ char UDStack::popChar()
 	else
 		throw "STACK IS EMPTY";
 }
-double UDStack::popNumber()
-{
-	if (this->isEmpty() == false)
-	{
-		while()
-		num--;
-		char topChar = top->ch;
-		Node *toDelete = top;
-		top = top->previous;
-		delete toDelete;
-		return topChar;
-	}
-	else
-		throw "STACK IS EMPTY";
-}
 char UDStack::peekTop() const
 {
 	if (this->isEmpty() == false)
@@ -97,7 +83,7 @@ char UDStack::peekTop() const
 		return topChar;
 	}
 	else
-		throw "STACK IS EMPTY";
+		return 0;
 }
 
 bool UDStack::isEmpty() const
@@ -114,5 +100,26 @@ UDStack::~UDStack()
 		Node *toDelete = top;
 		top = top->previous;
 		delete toDelete;
+	}
+}
+
+std::string UDStack::popNumberString()
+{
+	std::string value = "";
+	char topChar = this->peekTop();
+	if (topChar != '#')
+	{
+		return value;
+	}
+	else
+	{
+		this->popChar();
+		topChar = this->peekTop();
+		while (this->isEmpty() == false && ((topChar >= '0' && topChar <= '9') || (topChar == '.')))
+		{
+			value.insert(value.begin(), this->popChar());
+			topChar = this->peekTop();
+		}
+		return value;
 	}
 }
