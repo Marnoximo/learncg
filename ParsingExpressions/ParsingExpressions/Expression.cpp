@@ -135,12 +135,12 @@ double PostfixExpression::evaluate() const
 			eval_stack->push((std::to_string(r) + "#").c_str());
 		}
 	}
-	
+	/*
 	UDStack copy(*eval_stack);
 	while (copy.isEmpty() == false)
 		std::cout << copy.popChar();
 	std::cin.get();
-	
+	*/
 	r = std::stod(eval_stack->popNumberString());
 	return r;
 }
@@ -263,7 +263,7 @@ double PrefixExpression::evaluate() const
 				i--;
 			}
 			i++;
-			std::cout << temp->size() << std::endl;
+			//std::cout << temp->size() << std::endl;
 			while (temp->isEmpty() == false)
 			{
 				eval_stack->push(temp->popChar());
@@ -273,7 +273,8 @@ double PrefixExpression::evaluate() const
 			UDStack copy(*eval_stack);
 			std::cout << "$";
 			while (copy.isEmpty() == false)
-				std::cout << copy.popChar();
+				std::cout << copy.popCha
+				r();
 			std::cin.get();
 			*/
 		}
@@ -306,8 +307,10 @@ double PrefixExpression::evaluate() const
 			default:
 				break;
 			}
+			/*
 			std::cout << "a= " << a << " b= " << b << " r= " << r << std::endl;
 			std::cin.get();
+			*/
 			eval_stack->push((std::to_string(r) + "#").c_str());
 		}
 	}

@@ -1,3 +1,5 @@
-﻿  ParsingExpressions.cpp
+﻿  Expression.cpp
+e:\vc projects\parsingexpressions\parsingexpressions\expression.cpp(27): warning C4018: '<': signed/unsigned mismatch
+e:\vc projects\parsingexpressions\parsingexpressions\expression.cpp(98): warning C4018: '<': signed/unsigned mismatch
   ParsingExpressions.vcxproj -> E:\vc projects\ParsingExpressions\Debug\ParsingExpressions.exe
   ParsingExpressions.vcxproj -> E:\vc projects\ParsingExpressions\Debug\ParsingExpressions.pdb (Partial PDB)
