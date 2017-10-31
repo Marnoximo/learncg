@@ -1,11 +1,11 @@
 #pragma once
 #include <string>
 #include "UDStack.h"
+#include <list>
+#include "PStack.h"
 
-class Expression
-{
 
-};
+ 
 class PrefixExpression
 {
 private:
@@ -18,7 +18,6 @@ public:
 	virtual ~PrefixExpression();
 	virtual std::string to_string() const;
 	virtual double evaluate() const;
-
 };
 
 class InfixExpression
@@ -46,4 +45,24 @@ public:
 	virtual ~PostfixExpression();
 	virtual std::string to_string() const;
 	virtual double evaluate() const;
+};
+
+class Postfix
+{
+private:
+	std::list<Unit*> l;
+	std::string str;
+	PStack stack;
+	void build_stack();
+	void refine();
+	
+	static unit_type recog_char(char ch);
+	static double nextDouble(const char *str, int &len);
+public:
+	static int getPriority(const Unit &unit);
+	Postfix(const char* str);
+	Postfix(const std::string & str);
+	~Postfix();
+	void showStack() const;
+	void show() const;
 };

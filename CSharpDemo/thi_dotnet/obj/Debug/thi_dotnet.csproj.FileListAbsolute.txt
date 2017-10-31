@@ -1,0 +1,9 @@
+E:\vc projects\CSharpDemo\thi_dotnet\bin\Debug\thi_dotnet.exe
+E:\vc projects\CSharpDemo\thi_dotnet\bin\Debug\thi_dotnet.pdb
+E:\vc projects\CSharpDemo\thi_dotnet\obj\Debug\thi_dotnet.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\thi_dotnet\obj\Debug\thi_dotnet.Form1.resources
+E:\vc projects\CSharpDemo\thi_dotnet\obj\Debug\thi_dotnet.Properties.Resources.resources
+E:\vc projects\CSharpDemo\thi_dotnet\obj\Debug\thi_dotnet.csproj.GenerateResource.Cache
+E:\vc projects\CSharpDemo\thi_dotnet\obj\Debug\thi_dotnet.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\thi_dotnet\obj\Debug\thi_dotnet.exe
+E:\vc projects\CSharpDemo\thi_dotnet\obj\Debug\thi_dotnet.pdb

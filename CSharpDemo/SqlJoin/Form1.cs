@@ -12,20 +12,33 @@ namespace SqlJoin
 {
     public partial class Form1 : Form
     {
-        private SqlConnection sqlCnt;
-        private SqlCommand sqlCmd;
-        private SqlDataReader dataReader;
-        private string cntString;
+        //private SqlConnection sqlCnt;
+        //private SqlCommand sqlCmd;
+        //private SqlDataReader dataReader;
+        public SV_DAL sv_dal { get; set; }
+        public DataHelper dataHelper { get; set; }
+        private string cntString = @"Data Source=DESKTOP-2MI7EK9\TIENSQLSERVER;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public Form1()
         {
             InitializeComponent();
 
-            SqlInit();
+            sv_dal = new SV_DAL(cntString);
+            DataHelperInit();
+            //SqlInit();
             CbbInit();
             ListViewInit();
             
         }
 
+        private void DataHelperInit()
+        {
+            dataHelper = new DataHelper(cntString);
+        }
+
+        //================PROCEDURAL====================//
+        //==============================================//
+
+        /*
         private void SqlInit()
         {
             sqlCnt = new SqlConnection();
@@ -66,24 +79,53 @@ namespace SqlJoin
             return obj;
         }
 
+        */
         private void CbbInit()
         {
             string classQuery = "SELECT DISTINCT(Class) FROM sinhvien.dbo.SV2";
-            SetDataReader(classQuery);
+            //dataReader = dataHelper.ExecuteReader(classQuery);
+            //SetDataReader(classQuery);
+            DataTable dt = dataHelper.ExecuteDataSet(classQuery);
+            
+            /*
             cbb_class.Items.Clear();
             while (dataReader.Read())
             {
                 cbb_class.Items.Add(dataReader["Class"]);
             }
-            FinishReading();
+            dataHelper.ConnectionClose();
+            //FinishReading();
             string FacultyIdQuery = "SELECT DISTINCT(FacultyId) FROM sinhvien.dbo.SV2";
-            SetDataReader(FacultyIdQuery);
+            dataReader = dataHelper.ExecuteReader(FacultyIdQuery);
+            //SetDataReader(FacultyIdQuery);
             cbb_facultyid.Items.Clear();
             while (dataReader.Read())
             {
                 cbb_facultyid.Items.Add(dataReader["FacultyId"]);
             }
-            FinishReading();
+            //FinishReading();
+            dataHelper.ConnectionClose();
+            */
+
+            cbb_class.Items.Clear();
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                cbb_class.Items.Add(dt.Rows[i].ItemArray[0].ToString());
+            }
+            string FacultyIdQuery = "SELECT DISTINCT(FacultyId) FROM sinhvien.dbo.SV2";
+            dt = dataHelper.ExecuteDataSet(FacultyIdQuery);
+
+            cbb_facultyid.Items.Clear();
+            /*
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                cbb_facultyid.Items.Add(dt.Rows[i].ItemArray[0].ToString());
+            }
+            */
+            foreach(Faculty i in sv_dal.getListFaculty())
+            {
+                cbb_facultyid.Items.Add(i.FacultyName);
+            }
         }
 
         private void ListViewInit()
@@ -100,25 +142,30 @@ namespace SqlJoin
             col_faculty_name.Width = lv_list.Width/3;
             lv_list.Columns.AddRange(new ColumnHeader[] { col_student_id, col_student_name, col_faculty_name });
         }
+
+        
         private void ShowRecords()
         {
             string selectAll = "select sv2.ID, sv2.Name, Faculty.FacultyName from sinhvien.dbo.SV2 join sinhvien.dbo.Faculty on sv2.FacultyId = Faculty.FacultyId";
-            SetDataReader(selectAll);
+            //dataReader = dataHelper.ExecuteReader(selectAll);
+            //SetDataReader(selectAll);
+            DataTable dt = dataHelper.ExecuteDataSet(selectAll);
 
             lv_list.Items.Clear();
-            while (dataReader.Read())
+            for(int i = 0; i < dt.Rows.Count; i++)
             {
-                ListViewItem item = new ListViewItem(new string[] {dataReader["ID"].ToString(), dataReader["Name"].ToString(), dataReader["FacultyName"].ToString()});
-                //item.SubItems[]
+                ListViewItem item = new ListViewItem(new string[] {dt.Rows[i].ItemArray[0].ToString(), dt.Rows[i].ItemArray[1].ToString(), dt.Rows[i].ItemArray[2].ToString()});
+                //item.SubItems[];
                 lv_list.Items.Add(item);
             }
-            FinishReading();
+            //FinishReading();
         }
+        
 
         private bool IsAvail(string recId)
         {
             string checkRecord = "SELECT COUNT(*) FROM sinhvien.dbo.SV2 WHERE ID= '" + recId + "'";
-            if ((int)SqlExecuteScalar(checkRecord) > 0)
+            if ((int)dataHelper.ExecuteScalar(checkRecord) > 0)
                 return true;
             return false;
         }
@@ -126,18 +173,20 @@ namespace SqlJoin
         private void FillWidgetsWithInfo(string recID)
         {
             string recSelect = "SELECT * FROM sinhvien.dbo.sv2 JOIN sinhvien.dbo.Faculty ON sv2.FacultyId = faculty.facultyId WHERE ID = '" + recID + "'";
-            SetDataReader(recSelect);
-            while (dataReader.Read())
+            //dataReader = dataHelper.ExecuteReader(recSelect);
+            //SetDataReader(recSelect);
+            DataTable dt = dataHelper.ExecuteDataSet(recSelect);
+
+            for(int i = 0; i < dt.Rows.Count; i++)
             {
-                tb_id.Text = dataReader["ID"].ToString();
-                tb_name.Text = dataReader["Name"].ToString();
-                cbb_class.SelectedItem = dataReader["Class"].ToString();
-                SetGender((bool)dataReader["Gender"]);
-                dtp_birthday.Value = (DateTime)dataReader["Birthday"];
-                cbb_facultyid.SelectedItem = dataReader["FacultyId"].ToString();
-                tb_facultyname.Text = dataReader["FacultyName"].ToString();
+                tb_id.Text = dt.Rows[i].ItemArray[0].ToString();
+                tb_name.Text = dt.Rows[i].ItemArray[1].ToString();
+                cbb_class.SelectedItem = dt.Rows[i].ItemArray[2].ToString();
+                SetGender((bool)dt.Rows[i].ItemArray[4]);
+                dtp_birthday.Value = (DateTime)dt.Rows[i].ItemArray[3];
+                cbb_facultyid.SelectedItem = dt.Rows[i].ItemArray[5].ToString();
+                tb_facultyname.Text = dt.Rows[i].ItemArray[6].ToString();
             }
-            FinishReading();
         }
 
         private void SetGender(bool isMale)
@@ -168,12 +217,9 @@ namespace SqlJoin
 
         private void SetDataGridView()
         {
-            sqlCmd.CommandText = "SELECT sv2.id, sv2.name, sv2.class, sv2.birthday, sv2.gender, faculty.facultyname FROM sinhvien.dbo.sv2 JOIN sinhvien.dbo.Faculty ON sv2.FacultyId = faculty.facultyId";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = sqlCmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            dgv_student.DataSource = ds.Tables[0];
+            string queryStr = "SELECT sv2.id, sv2.name, sv2.class, sv2.birthday, sv2.gender, faculty.facultyname FROM sinhvien.dbo.sv2 JOIN sinhvien.dbo.Faculty ON sv2.FacultyId = faculty.facultyId";
+            DataTable dt = dataHelper.ExecuteDataSet(queryStr);
+            dgv_student.DataSource = sv_dal.getListDbView();
         }
 
         //=======================WIDGETS' METHODS======================================//
@@ -220,7 +266,7 @@ namespace SqlJoin
                                                                                + birthday + "', "
                                                                                + gender + ", '"
                                                                                + facultyId + "')";
-                        SqlExecuteNonQuery(addRecord);
+                        dataHelper.ExecuteNonQuery(addRecord);
                         ShowRecords();
                     }
                 }
@@ -264,7 +310,7 @@ namespace SqlJoin
                                             + "', Birthday= '" + birthday
                                             + "', Gender= " + gender
                                             + " WHERE ID= '" + id + "'";
-                    SqlExecuteNonQuery(updateRecord);
+                    dataHelper.ExecuteNonQuery(updateRecord);
                     ShowRecords();
                 }
                 catch (Exception exception)
@@ -284,7 +330,7 @@ namespace SqlJoin
             {
                 string id = tb_id.Text;
                 string deleteRecord = "DELETE FROM sinhvien.dbo.SV2 WHERE ID= '" + id + "'";
-                SqlExecuteNonQuery(deleteRecord);
+                dataHelper.ExecuteNonQuery(deleteRecord);
                 ShowRecords();
             }
             catch (Exception exception)
@@ -303,9 +349,11 @@ namespace SqlJoin
         {
             DataGridViewSelectedRowCollection rowSelected;
             rowSelected = dgv_student.SelectedRows;
-
-
-            MessageBox.Show("ok");
+            if(rowSelected.Count > 0)
+            {
+                //MessageBox.Show(rowSelected[0].Cells[0].Value.ToString());
+                FillWidgetsWithInfo(rowSelected[0].Cells[0].Value.ToString()); 
+            }
         }
         /*
 private void InitializeComponent()

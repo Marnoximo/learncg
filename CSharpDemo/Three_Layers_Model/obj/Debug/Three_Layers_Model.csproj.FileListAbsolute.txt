@@ -1,0 +1,9 @@
+E:\vc projects\CSharpDemo\Three_Layers_Model\bin\Debug\Three_Layers_Model.exe
+E:\vc projects\CSharpDemo\Three_Layers_Model\bin\Debug\Three_Layers_Model.pdb
+E:\vc projects\CSharpDemo\Three_Layers_Model\obj\Debug\Three_Layers_Model.csprojResolveAssemblyReference.cache
+E:\vc projects\CSharpDemo\Three_Layers_Model\obj\Debug\Three_Layers_Model.Form1.resources
+E:\vc projects\CSharpDemo\Three_Layers_Model\obj\Debug\Three_Layers_Model.Properties.Resources.resources
+E:\vc projects\CSharpDemo\Three_Layers_Model\obj\Debug\Three_Layers_Model.csproj.GenerateResource.Cache
+E:\vc projects\CSharpDemo\Three_Layers_Model\obj\Debug\Three_Layers_Model.csproj.CoreCompileInputs.cache
+E:\vc projects\CSharpDemo\Three_Layers_Model\obj\Debug\Three_Layers_Model.exe
+E:\vc projects\CSharpDemo\Three_Layers_Model\obj\Debug\Three_Layers_Model.pdb
